@@ -31,7 +31,7 @@ public class ChessBoard {
      * @param position The position to get the piece from @return Either the piece at the position, or null if no piece is at that position
      */
     public ChessPiece getPiece(ChessPosition position) {
-
+        return board.get(position);
     }
 
     /**
@@ -69,6 +69,19 @@ public class ChessBoard {
         for (int col = 0; col < 8; col++) {
             board.put(new ChessPosition(6, col), new Pawn(ChessPiece.Color.WHITE));
         }
+        private boolean isValidPosition(ChessPosition position) {
+            return position.getRow() >= 0 && position.getRow() < 8
+                    && position.getColumn() >= 0 && position.getColumn() < 8;
+        }
 
     }
+    /**
+     * Removes a piece from a specific position (for capturing moves)
+     *
+     * @param position The position to remove the piece from
+     */
+    public void removePiece(ChessPosition position) {
+        board.remove(position);
+    }
+
 }
