@@ -1,6 +1,7 @@
 package chess;
 import java.util.HashMap;
 import java.util.Map;
+import ChessPiece.java;
 import chess.ChessPosition;
 /**
  * A chessboard that can hold and rearrange chess pieces.
