@@ -31,4 +31,7 @@ public class ChessPosition {
     public int getColumn() {
         return column;
     }
+
+    public ChessPosition offset(int i, int i1) {
+    }
 }

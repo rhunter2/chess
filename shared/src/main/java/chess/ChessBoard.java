@@ -1,8 +1,6 @@
 package chess;
 import java.util.HashMap;
 import java.util.Map;
-import ChessPiece.java;
-import chess.ChessPosition;
 /**
  * A chessboard that can hold and rearrange chess pieces.
  * <p>
@@ -42,39 +40,40 @@ public class ChessBoard {
         board.clear(); // Clear the board first
 
         // Black pieces
-        board.put(new ChessPosition(0, 0), new Rook(ChessPiece.Color.BLACK));
-        board.put(new ChessPosition(0, 1), new Knight(ChessPiece.Color.BLACK));
-        board.put(new ChessPosition(0, 2), new Bishop(ChessPiece.Color.BLACK));
-        board.put(new ChessPosition(0, 3), new Queen(ChessPiece.Color.BLACK));
-        board.put(new ChessPosition(0, 4), new King(ChessPiece.Color.BLACK));
-        board.put(new ChessPosition(0, 5), new Bishop(ChessPiece.Color.BLACK));
-        board.put(new ChessPosition(0, 6), new Knight(ChessPiece.Color.BLACK));
-        board.put(new ChessPosition(0, 7), new Rook(ChessPiece.Color.BLACK));
+        board.put(new ChessPosition(0, 0), new ChessPiece(ChessGame.TeamColor.BLACK, ChessPiece.PieceType.ROOK));
+        board.put(new ChessPosition(0, 1), new ChessPiece(ChessGame.TeamColor.BLACK, ChessPiece.PieceType.KNIGHT));
+        board.put(new ChessPosition(0, 2), new ChessPiece(ChessGame.TeamColor.BLACK, ChessPiece.PieceType.BISHOP));
+        board.put(new ChessPosition(0, 3), new ChessPiece(ChessGame.TeamColor.BLACK, ChessPiece.PieceType.QUEEN));
+        board.put(new ChessPosition(0, 4), new ChessPiece(ChessGame.TeamColor.BLACK, ChessPiece.PieceType.KING));
+        board.put(new ChessPosition(0, 5), new ChessPiece(ChessGame.TeamColor.BLACK, ChessPiece.PieceType.BISHOP));
+        board.put(new ChessPosition(0, 6), new ChessPiece(ChessGame.TeamColor.BLACK, ChessPiece.PieceType.KNIGHT));
+        board.put(new ChessPosition(0, 7), new ChessPiece(ChessGame.TeamColor.BLACK, ChessPiece.PieceType.ROOK));
 
         // Black pawns
         for (int col = 0; col < 8; col++) {
-            board.put(new ChessPosition(1, col), new Pawn(ChessPiece.Color.BLACK));
+            board.put(new ChessPosition(1, col), new ChessPiece(ChessGame.TeamColor.BLACK, ChessPiece.PieceType.PAWN));
         }
 
         // White pieces
-        board.put(new ChessPosition(7, 0), new Rook(ChessPiece.Color.WHITE));
-        board.put(new ChessPosition(7, 1), new Knight(ChessPiece.Color.WHITE));
-        board.put(new ChessPosition(7, 2), new Bishop(ChessPiece.Color.WHITE));
-        board.put(new ChessPosition(7, 3), new Queen(ChessPiece.Color.WHITE));
-        board.put(new ChessPosition(7, 4), new King(ChessPiece.Color.WHITE));
-        board.put(new ChessPosition(7, 5), new Bishop(ChessPiece.Color.WHITE));
-        board.put(new ChessPosition(7, 6), new Knight(ChessPiece.Color.WHITE));
-        board.put(new ChessPosition(7, 7), new Rook(ChessPiece.Color.WHITE));
+        board.put(new ChessPosition(7, 0), new ChessPiece(ChessGame.TeamColor.WHITE, ChessPiece.PieceType.ROOK));
+        board.put(new ChessPosition(7, 1), new ChessPiece(ChessGame.TeamColor.WHITE, ChessPiece.PieceType.KNIGHT));
+        board.put(new ChessPosition(7, 2), new ChessPiece(ChessGame.TeamColor.WHITE, ChessPiece.PieceType.BISHOP));
+        board.put(new ChessPosition(7, 3), new ChessPiece(ChessGame.TeamColor.WHITE, ChessPiece.PieceType.QUEEN));
+        board.put(new ChessPosition(7, 4), new ChessPiece(ChessGame.TeamColor.WHITE, ChessPiece.PieceType.KING));
+        board.put(new ChessPosition(7, 5), new ChessPiece(ChessGame.TeamColor.WHITE, ChessPiece.PieceType.BISHOP));
+        board.put(new ChessPosition(7, 6), new ChessPiece(ChessGame.TeamColor.WHITE, ChessPiece.PieceType.KNIGHT));
+        board.put(new ChessPosition(7, 7), new ChessPiece(ChessGame.TeamColor.WHITE, ChessPiece.PieceType.ROOK));
 
         // White pawns
         for (int col = 0; col < 8; col++) {
-            board.put(new ChessPosition(6, col), new Pawn(ChessPiece.Color.WHITE));
-        }
-        private boolean isValidPosition(ChessPosition position) {
-            return position.getRow() >= 0 && position.getRow() < 8
-                    && position.getColumn() >= 0 && position.getColumn() < 8;
+            board.put(new ChessPosition(6, col), new ChessPiece(ChessGame.TeamColor.WHITE, ChessPiece.PieceType.PAWN));
         }
 
+
+    }
+    public boolean isValidPosition(ChessPosition position) {
+        return position.getRow() >= 0 && position.getRow() < 8
+                && position.getColumn() >= 0 && position.getColumn() < 8;
     }
     /**
      * Removes a piece from a specific position (for capturing moves)
