@@ -13,6 +13,9 @@ public class ChessPiece {
     private final ChessGame.TeamColor pieceColor;
     private final PieceType type;
 
+    public Collection<ChessMove> getValidMoves(ChessBoard board) {
+    }
+
     /**
      * The various different chess piece options
      */

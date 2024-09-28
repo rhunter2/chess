@@ -84,4 +84,9 @@ public class ChessBoard {
         board.remove(position);
     }
 
+    public ChessPiece getPieceAt(ChessPosition startPosition) {
+    }
+
+    public void movePiece(ChessMove move) {
+    }
 }
