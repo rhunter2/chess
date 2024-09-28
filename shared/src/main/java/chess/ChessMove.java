@@ -1,61 +1,72 @@
 package chess;
 
+import java.util.Objects;
+
 /**
- * Represents moving a chess piece on a chessboard.
+ * Represents a chess move, including starting position, ending position, and
+ * optional pawn promotion.
  * <p>
- * Note: You can add to this class, but you may not alter
- * the signature of the existing methods.
+ * Note: The class is immutable, meaning its fields cannot be changed after initialization.
  */
 public class ChessMove {
 
     private final ChessPosition startPosition;
     private final ChessPosition endPosition;
-    private final ChessPiece.PieceType promotionPiece;
+    private final ChessPiece.PieceType promotionPiece; // Nullable, only for pawn promotion
 
     /**
-     * Constructor to initialize a chess move with pawn promotion.
+     * Constructs a ChessMove object representing a move from one position to another,
+     * with an optional pawn promotion.
      *
-     * @param startPosition   The starting position of the move.
-     * @param endPosition     The ending position of the move.
-     * @param promotionPiece  The piece type to promote a pawn to, if applicable (can be null if no promotion).
+     * @param startPosition   Starting position of the move
+     * @param endPosition     Ending position of the move
+     * @param promotionPiece  Type of piece for pawn promotion (nullable if no promotion)
      */
     public ChessMove(ChessPosition startPosition, ChessPosition endPosition, ChessPiece.PieceType promotionPiece) {
-        this.startPosition = startPosition;
-        this.endPosition = endPosition;
-        this.promotionPiece = promotionPiece;
+        this.startPosition = Objects.requireNonNull(startPosition, "Start position cannot be null");
+        this.endPosition = Objects.requireNonNull(endPosition, "End position cannot be null");
+        this.promotionPiece = promotionPiece; // May be null for non-promotion moves
     }
 
     /**
-     * Constructor to initialize a chess move without promotion.
-     *
-     * @param startPosition   The starting position of the move.
-     * @param endPosition     The ending position of the move.
-     */
-    public ChessMove(ChessPosition startPosition, ChessPosition endPosition) {
-        this(startPosition, endPosition, null); // Calls the primary constructor with null for promotionPiece
-    }
-
-    /**
-     * @return ChessPosition of starting location
+     * @return The starting position of the move
      */
     public ChessPosition getStartPosition() {
-        return this.startPosition;
+        return startPosition;
     }
 
     /**
-     * @return ChessPosition of ending location
+     * @return The ending position of the move
      */
     public ChessPosition getEndPosition() {
-        return this.endPosition;
+        return endPosition;
     }
 
     /**
-     * Gets the type of piece to promote a pawn to if pawn promotion is part of this
-     * chess move.
-     *
-     * @return Type of piece to promote a pawn to, or null if no promotion.
+     * @return The promotion piece type if it's a pawn promotion, or null if no promotion
      */
     public ChessPiece.PieceType getPromotionPiece() {
-        return this.promotionPiece;
+        return promotionPiece;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof ChessMove)) return false;
+        ChessMove other = (ChessMove) o;
+        return startPosition.equals(other.startPosition) &&
+                endPosition.equals(other.endPosition) &&
+                Objects.equals(promotionPiece, other.promotionPiece);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(startPosition, endPosition, promotionPiece);
+    }
+
+    @Override
+    public String toString() {
+        return String.format("ChessMove{start=%s, end=%s, promotion=%s}",
+                startPosition, endPosition, promotionPiece != null ? promotionPiece : "None");
     }
 }

@@ -1,37 +1,56 @@
 package chess;
 
+import java.util.Objects;
+
 /**
- * Represents a single square position on a chess board
- * <p>
- * Note: You can add to this class, but you may not alter
- * signature of the existing methods.
+ * Represents a single square position on a chess board.
+ * The row and column are 1-indexed, where 1 refers to the bottom row and left-most column respectively.
  */
 public class ChessPosition {
-    private int row;    // Row of the position
-    private int column; // Column of the position
 
+    private final int row;
+    private final int col;
 
+    /**
+     * Constructs a ChessPosition object with the given row and column.
+     *
+     * @param row the row number (1 for the bottom row)
+     * @param col the column number (1 for the left-most column)
+     */
     public ChessPosition(int row, int col) {
         this.row = row;
-        this.column = col;
+        this.col = col;
     }
 
     /**
-     * @return which row this position is in
-     * 1 codes for the bottom row
+     * @return the row number of this position (1-indexed)
      */
     public int getRow() {
         return row;
     }
 
     /**
-     * @return which column this position is in
-     * 1 codes for the left row
+     * @return the column number of this position (1-indexed)
      */
     public int getColumn() {
-        return column;
+        return col;
     }
 
-    public ChessPosition offset(int i, int i1) {
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof ChessPosition)) return false;
+        ChessPosition that = (ChessPosition) o;
+        return row == that.row && col == that.col;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(row, col);
+    }
+
+    @Override
+    public String toString() {
+        return String.format("ChessPosition{row=%d, col=%d}", row, col);
     }
 }
